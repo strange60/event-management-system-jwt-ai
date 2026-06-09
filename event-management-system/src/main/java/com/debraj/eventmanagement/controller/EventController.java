@@ -3,6 +3,7 @@ package com.debraj.eventmanagement.controller;
 import com.debraj.eventmanagement.entity.Event;
 import com.debraj.eventmanagement.service.EventService;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public class EventController {
     }
 
     @PostMapping
-    public Event createEvent(@Valid @RequestBody Event event) {
-        return service.createEvent(event);
+    public ResponseEntity<Event> createEvent(@Valid @RequestBody Event event) {
+        return ResponseEntity.ok(service.createEvent(event));
     }
 
     @GetMapping

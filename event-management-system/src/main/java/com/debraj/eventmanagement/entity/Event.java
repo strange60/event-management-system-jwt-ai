@@ -1,6 +1,7 @@
 package com.debraj.eventmanagement.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -19,18 +20,18 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Title is required")
     private String title;
 
     @NotBlank
     private String description;
 
-    @NotBlank
+    @NotBlank(message = "Location is required")
     private String location;
 
-    @NotNull
+    @NotNull(message = "Event date is required")
     private LocalDate eventDate;
 
-    @NotNull
+    @Min(value = 1, message = "capacity must be greater than o")
     private Integer capacity;
 }

@@ -30,7 +30,7 @@ public SecurityConfig(JwtFilter jwtFilter){
                         ).permitAll()
 
                         .requestMatchers(HttpMethod.GET, "/events/**").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/events/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/events/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/events/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/events/**").authenticated()
 
