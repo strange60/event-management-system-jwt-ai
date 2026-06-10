@@ -27,7 +27,9 @@ public class JwtFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain)
             throws ServletException, IOException {
+
         String path = request.getServletPath();
+        System.out.println("PATH = " + path);
 
         if (path.startsWith("/swagger-ui")
                 || path.startsWith("/v3/api-docs")) {
@@ -35,18 +37,17 @@ public class JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        String authHeader =
-                request.getHeader("Authorization");
+
+        String authHeader = request.getHeader("Authorization");
+        System.out.println("AUTH HEADER = " + authHeader);
 
         if (authHeader != null &&
                 authHeader.startsWith("Bearer ")) {
 
-            String token =
-                    authHeader.substring(7);
+            String token = authHeader.substring(7);
 
             try {
-                String email =
-                        jwtService.extractEmail(token);
+                String email = jwtService.extractEmail(token);
 
                 UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(
@@ -58,9 +59,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext()
                         .setAuthentication(authentication);
 
-                System.out.println(
-                        "Authenticated User: "
-                                + email);
+                System.out.println("Authenticated User: " + email);
 
             } catch (Exception e) {
 
@@ -73,4 +72,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
+
+
 }

@@ -1,13 +1,23 @@
 package com.debraj.eventmanagement.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public class EventRequestDto {
 
+    @NotBlank(message = "Title is required")
     private String title;
+    @NotBlank(message = "Description is required")
     private String description;
+    @NotBlank(message = "Location is required")
     private String location;
     private LocalDate eventDate;
+
+    @NotNull(message = "Capacity is required")
+    @Min(value = 1, message = "Capacity must be greater than 0")
     private Integer capacity;
 
     public String getTitle() {

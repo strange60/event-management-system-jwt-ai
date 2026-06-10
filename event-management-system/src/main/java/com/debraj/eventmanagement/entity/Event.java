@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "events")
@@ -34,4 +35,16 @@ public class Event {
 
     @Min(value = 1, message = "capacity must be greater than o")
     private Integer capacity;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    @PrePersist
+    public void prePersist() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }

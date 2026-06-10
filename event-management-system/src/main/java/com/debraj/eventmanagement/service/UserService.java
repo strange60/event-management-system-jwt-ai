@@ -28,6 +28,10 @@ public class UserService {
                 passwordEncoder.encode(user.getPassword())
         );
 
+        if(user.getRole() == null){
+            user.setRole("USER");
+        }
+
         return repository.save(user);
     }
     public LoginResponseDto login(String email, String password) {
