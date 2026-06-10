@@ -1,28 +1,63 @@
-# Event Management System with JWT Authentication
+# Event Management System
 
 ## Overview
-A Spring Boot based Event Management System that allows users to register, authenticate using JWT, and manage events securely.
+
+A Spring Boot REST API for managing events with secure JWT-based authentication. The application supports event CRUD operations, search, pagination, sorting, validation, exception handling, PostgreSQL integration, Swagger documentation, and Docker deployment.
 
 ## Features
+
 - User Registration & Login
 - JWT Authentication
-- Role Based Access
 - Event CRUD Operations
+- Event Search by Title
+- Pagination & Sorting
+- Input Validation
+- Global Exception Handling
+- DTO Pattern Implementation
 - PostgreSQL Integration
 - Spring Security
 - REST APIs
-- Global Exception Handling
-- DTO Pattern
+- Swagger/OpenAPI Documentation
+- Docker Containerization
 
 ## Tech Stack
-- Java
+
+- Java 21
 - Spring Boot
 - Spring Security
-- JWT
+- JWT (JSON Web Token)
 - PostgreSQL
 - Spring Data JPA
 - Maven
+- Swagger / OpenAPI
+- Docker
 - Git & GitHub
 
-## Author
-Debraj Sahoo
+## API Endpoints
+
+### Authentication APIs
+
+- POST `/auth/register`
+- POST `/auth/login`
+
+### Event APIs
+
+- GET `/events`
+- GET `/events/{id}`
+- POST `/events`
+- PUT `/events/{id}`
+- DELETE `/events/{id}`
+- GET `/events/sorted`
+
+## Project Structure
+
+```text
+src
+├── controller
+├── service
+├── repository
+├── entity
+├── dto
+├── config
+├── exception
+└── resources
